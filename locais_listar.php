@@ -48,6 +48,8 @@ $resultado = mysqli_query($conexao, $sql);
                         <a href='locais_excluir.php?id=" . $local['id'] . "'>Excluir</a>
                       </td>";
                 echo "</tr>";
+
+                
             }
             ?>
         </tbody>
