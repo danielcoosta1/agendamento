@@ -8,6 +8,16 @@ if (!isset($_SESSION['usuario_logado'])) {
     exit;
 }
 
+// 2. NOVO: Verifica se é ADMIN
+// Se o nível NÃO for 'admin', expulsa o usuário para a área restrita
+if ($_SESSION['nivel_acesso'] !== 'admin') {
+    echo "<script>
+            alert('Acesso Negado! Apenas administradores podem gerenciar locais.');
+            window.location.href = 'area_restrita.php';
+          </script>";
+    exit;
+}
+
 // 2. Verificar se o ID foi passado na URL
 if (isset($_GET['id'])) {
     $id_excluir = $_GET['id'];
@@ -24,10 +34,8 @@ if (isset($_GET['id'])) {
     } else {
         echo "Erro ao excluir: " . mysqli_error($conexao);
     }
-
 } else {
     // Se tentar entrar direto sem ID, manda volta para a lista
     header('Location: locais_listar.php');
     exit;
 }
-?>
