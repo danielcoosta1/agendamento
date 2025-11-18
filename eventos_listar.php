@@ -21,13 +21,15 @@ $resultado = mysqli_query($conexao, $sql);
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Agenda de Eventos</title>
 </head>
+
 <body>
     <h1>Agenda de Eventos</h1>
-    
+
     <a href="eventos_adicionar.php">+ Novo Agendamento</a>
     <a href="area_restrita.php"> | Voltar ao Início</a>
     <br><br>
@@ -49,7 +51,7 @@ $resultado = mysqli_query($conexao, $sql);
                 while ($evento = mysqli_fetch_assoc($resultado)) {
                     // Formatar a data para o padrão brasileiro (Dia/Mês/Ano)
                     $data_formatada = date('d/m/Y', strtotime($evento['data_evento']));
-                    
+
                     // Formatar a hora (apenas Hora:Minuto)
                     $hora_inicio = date('H:i', strtotime($evento['hora_inicio']));
                     $hora_fim = date('H:i', strtotime($evento['hora_termino']));
@@ -62,7 +64,7 @@ $resultado = mysqli_query($conexao, $sql);
                     echo "<td>" . $evento['nome_responsavel'] . "</td>"; // Nome vindo do JOIN
                     echo "<td>
                             <a href='#'>Editar</a> | 
-                            <a href='#'>Excluir</a>
+                            <a href='eventos_excluir.php?id=" . $evento['id'] . "' onclick='return confirm(\"Tem certeza?\")'>Excluir</a>
                           </td>";
                     echo "</tr>";
                 }
@@ -73,4 +75,5 @@ $resultado = mysqli_query($conexao, $sql);
         </tbody>
     </table>
 </body>
+
 </html>
