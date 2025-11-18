@@ -36,6 +36,8 @@ if (isset($_SESSION['usuario_logado']) && !empty($_SESSION['usuario_logado'])) {
 
     <br>
     
+    <a href="locais_listar.php">Gerenciar Locais</a>
+    <br><br>
     <a href="logout.php">Sair (Logout)</a>
 </body>
 </html>
