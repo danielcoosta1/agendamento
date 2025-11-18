@@ -8,6 +8,16 @@ if (!isset($_SESSION['usuario_logado'])) {
     exit;
 }
 
+// 2. NOVO: Verifica se é ADMIN
+// Se o nível NÃO for 'admin', expulsa o usuário para a área restrita
+if ($_SESSION['nivel_acesso'] !== 'admin') {
+    echo "<script>
+            alert('Acesso Negado! Apenas administradores podem gerenciar locais.');
+            window.location.href = 'area_restrita.php';
+          </script>";
+    exit;
+}
+
 // 2. Buscar os locais no banco (Aula 10, slide 31 - SELECT)
 $sql = "SELECT * FROM locais";
 $resultado = mysqli_query($conexao, $sql);
@@ -15,13 +25,16 @@ $resultado = mysqli_query($conexao, $sql);
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Gerenciar Locais</title>
-    </head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
     <h1>Locais Cadastrados</h1>
-    
+
     <a href="locais_adicionar.php">+ Adicionar Novo Local</a>
     <br><br>
 
@@ -48,14 +61,13 @@ $resultado = mysqli_query($conexao, $sql);
                         <a href='locais_excluir.php?id=" . $local['id'] . "'>Excluir</a>
                       </td>";
                 echo "</tr>";
-
-                
             }
             ?>
         </tbody>
     </table>
-    
+
     <br>
     <a href="area_restrita.php">Voltar para o Início</a>
 </body>
+
 </html>

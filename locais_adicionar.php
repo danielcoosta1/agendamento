@@ -8,6 +8,16 @@ if (!isset($_SESSION['usuario_logado'])) {
     exit;
 }
 
+// 2. NOVO: Verifica se é ADMIN
+// Se o nível NÃO for 'admin', expulsa o usuário para a área restrita
+if ($_SESSION['nivel_acesso'] !== 'admin') {
+    echo "<script>
+            alert('Acesso Negado! Apenas administradores podem gerenciar locais.');
+            window.location.href = 'area_restrita.php';
+          </script>";
+    exit;
+}
+
 // Lógica de cadastro (Só executa se o form for enviado via POST)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
@@ -31,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Adicionar Local</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Novo Local</h1>

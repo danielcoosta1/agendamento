@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Editar Local</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Editar Local</h1>
