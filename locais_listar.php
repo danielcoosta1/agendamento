@@ -18,6 +18,7 @@ $resultado = mysqli_query($conexao, $sql);
 <head>
     <meta charset="UTF-8">
     <title>Gerenciar Locais</title>
+    <link rel="stylesheet" href="style.css">
     </head>
 <body>
     <h1>Locais Cadastrados</h1>

@@ -27,6 +27,7 @@ if (isset($_SESSION['usuario_logado']) && !empty($_SESSION['usuario_logado'])) {
 <head>
     <meta charset="UTF-8">
     <title>Área Restrita</title>
+    <link rel="stylesheet" href="style.css">
     </head>
 <body>
     <h1>Bem-vindo à Área Restrita, <?php echo $nome_usuario; ?>!</h1>

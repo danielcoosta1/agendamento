@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Adicionar Local</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Novo Local</h1>
