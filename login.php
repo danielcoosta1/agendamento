@@ -25,9 +25,9 @@
         <?php
         if (isset($_GET['erro'])) {
             if ($_GET['erro'] == 'senha') {
-                echo "<p style='color: red;'>Senha incorreta. Tente novamente.</p>";
+                echo "<p class='msg-erro'>Senha incorreta. Tente novamente.</p>";
             } elseif ($_GET['erro'] == 'usuario') {
-                echo "<p style='color: red;'>Usuário não encontrado. Tente novamente.</p>";
+                echo "<p class='msg-erro'>Usuário não encontrado.</p>";
             }
         }
         ?>
@@ -35,7 +35,7 @@
 
         <br>
         <div style="text-align: center;">
-              <br>
+            <br>
             <a href="cadastro.php">Não tem conta? Cadastre-se aqui</a>
             <br><br>
             <a href="#" onclick="alert('Procure o administrador para resetar sua senha.')" style="font-size: 0.8em; color: #888;">Esqueci minha senha</a>

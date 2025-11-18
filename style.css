@@ -1,54 +1,54 @@
 /* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #1a1a2e; /* Fundo escuro */
-    color: #e0e0e0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
+  background-color: #1a1a2e; /* Fundo escuro */
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
 }
 
 /* Cabeçalhos */
 h1 {
-    color: #ffffff;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #e94560; /* Detalhe vermelho/rosa */
-    padding-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e94560; /* Detalhe vermelho/rosa */
+  padding-bottom: 10px;
 }
 
 /* Links */
 a {
-    text-decoration: none;
-    color: #e94560;
-    font-weight: bold;
-    transition: 0.3s;
+  text-decoration: none;
+  color: #e94560;
+  font-weight: bold;
+  transition: 0.3s;
 }
 a:hover {
-    color: #ff6b6b;
+  color: #ff6b6b;
 }
 
 /* Formulários */
 form {
-    background-color: #16213e;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    width: 100%;
-    max-width: 500px;
+  background-color: #16213e;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
 }
 
 label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    color: #a0a0a0;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #a0a0a0;
 }
 
 input[type="text"],
@@ -57,76 +57,87 @@ input[type="date"],
 input[type="time"],
 select,
 textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #0f3460;
-    background-color: #0f3460;
-    color: white;
-    border-radius: 4px;
-    outline: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #0f3460;
+  background-color: #0f3460;
+  color: white;
+  border-radius: 4px;
+  outline: none;
 }
 
 input[type="submit"] {
-    margin-top: 20px;
-    width: 100%;
-    padding: 12px;
-    background-color: #e94560;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background 0.3s;
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #e94560;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
 input[type="submit"]:hover {
-    background-color: #c22a42;
+  background-color: #c22a42;
 }
 
 /* Tabelas */
 table {
-    width: 100%;
-    max-width: 900px;
-    border-collapse: collapse;
-    background-color: #16213e;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 20px;
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  background-color: #16213e;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
 }
 
 th {
-    background-color: #0f3460;
-    color: #e94560;
-    padding: 15px;
-    text-align: left;
+  background-color: #0f3460;
+  color: #e94560;
+  padding: 15px;
+  text-align: left;
 }
 
 td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #1a1a2e;
+  padding: 12px 15px;
+  border-bottom: 1px solid #1a1a2e;
 }
 
 tr:hover {
-    background-color: #1a1a2e;
+  background-color: #1a1a2e;
 }
 
 /* Área Restrita / Menu */
 .menu-container {
-    text-align: center;
-    background-color: #16213e;
-    padding: 40px;
-    border-radius: 10px;
+  text-align: center;
+  background-color: #16213e;
+  padding: 40px;
+  border-radius: 10px;
 }
 .btn-menu {
-    display: inline-block;
-    margin: 10px;
-    padding: 15px 30px;
-    background-color: #0f3460;
-    color: white;
-    border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+  padding: 15px 30px;
+  background-color: #0f3460;
+  color: white;
+  border-radius: 5px;
 }
 .btn-menu:hover {
-    background-color: #e94560;
-    color: white;
+  background-color: #e94560;
+  color: white;
+}
+
+.msg-erro {
+  color: #ff6b6b; /* Um vermelho suave que combina com o tema escuro */
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ff6b6b;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 0.9em;
 }
