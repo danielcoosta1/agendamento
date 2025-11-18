@@ -33,6 +33,7 @@ if (mysqli_num_rows($resultado) == 1) {
         // 8. SENHA CORRETA!
         // Criamos a sessão (Aula 9, slide 28)
         $_SESSION['usuario_logado'] = $usuario_bd['usuario'];
+        $_SESSION['id_usuario'] = $usuario_bd['id'];
         $_SESSION['nivel_acesso'] = $usuario_bd['nivel_acesso'];
 
         // Redirecionamos para a área restrita
