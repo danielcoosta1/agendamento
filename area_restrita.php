@@ -8,11 +8,10 @@ session_start();
 // Verificamos se a "chave" 'usuario_logado' que criámos em 'verificar_login.php'
 // existe e não está vazia na $_SESSION.
 if (isset($_SESSION['usuario_logado']) && !empty($_SESSION['usuario_logado'])) {
-    
+
     // Se sim, o utilizador está logado.
     // Guardamos o nome dele numa variável para facilitar.
     $nome_usuario = $_SESSION['usuario_logado'];
-
 } else {
     // Se não, o utilizador NÃO está logado.
     // Redirecionamos ele de volta para a página de login (Aula 9, slide 33) 
@@ -24,23 +23,24 @@ if (isset($_SESSION['usuario_logado']) && !empty($_SESSION['usuario_logado'])) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Área Restrita</title>
     <link rel="stylesheet" href="style.css">
-    </head>
-<body>
-    <h1>Bem-vindo à Área Restrita, <?php echo $nome_usuario; ?>!</h1>
-    
-    <p>Esta é a página principal do seu sistema de agendamento.</p>
-    <p>Só utilizadores logados podem ver isto.</p>
+</head>
 
-    <br>
-    
-    <a href="locais_listar.php">Gerenciar Locais</a>
-    <br>
-    <a href="eventos_listar.php">Gerenciar Eventos</a>
-    <br><br>
-    <a href="logout.php">Sair (Logout)</a>
+<body>
+    <div class="menu-container">
+        <h1>Bem-vindo, <?php echo $nome_usuario; ?>!</h1>
+        <p>Painel de Controle</p>
+        <br>
+
+        <a href="locais_listar.php" class="btn-menu">Gerenciar Locais</a>
+        <a href="eventos_listar.php" class="btn-menu">Gerenciar Eventos</a>
+        <br><br>
+        <a href="logout.php">Sair</a>
+    </div>
 </body>
+
 </html>
