@@ -69,7 +69,7 @@ $res_locais = mysqli_query($conexao, "SELECT * FROM locais ORDER BY nome ASC");
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div>
             <a href="eventos_adicionar.php" class="btn-menu">+ Novo Evento</a>
-            <a href="calendario.php" class="btn-menu">📅 Visualizar CalendárioCalendário</a>
+            <a href="calendario.php" class="btn-menu">📅 Calendário</a>
             <a href="area_restrita.php" class="btn-menu">Voltar</a>
         </div>
     </div>
