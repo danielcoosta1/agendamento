@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Agendamento - Login</title>
     <link rel="stylesheet" href="style.css">
-    </head>
+</head>
+
 <body>
 
     <h1>Acessar o Sistema de Agendamento</h1>
@@ -21,7 +23,16 @@
         </div>
         <br>
         <input type="submit" value="Entrar">
+
+        <br>
+        <div style="text-align: center;">
+              <br>
+            <a href="cadastro.php">Não tem conta? Cadastre-se aqui</a>
+            <br><br>
+            <a href="#" onclick="alert('Procure o administrador para resetar sua senha.')" style="font-size: 0.8em; color: #888;">Esqueci minha senha</a>
+        </div>
     </form>
 
 </body>
+
 </html>
