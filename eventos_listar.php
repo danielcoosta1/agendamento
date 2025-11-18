@@ -7,33 +7,104 @@ if (!isset($_SESSION['usuario_logado'])) {
     exit;
 }
 
-// O TRUQUE DO JOIN (Aula 10 - Conceito avançado)
-// Estamos dizendo: "Selecione tudo de eventos, MAS TAMBÉM 
-// traga o nome do local e o nome do usuário correspondentes."
+// --- LÓGICA DE FILTRO ---
+
+// 1. Inicializar variáveis de filtro vazias
+$busca = "";
+$filtro_data = "";
+$filtro_local = "";
+
+// 2. Montar a base da consulta SQL (com os JOINs que já fizemos)
 $sql = "SELECT eventos.*, locais.nome AS nome_local, usuarios.usuario AS nome_responsavel 
         FROM eventos 
         JOIN locais ON eventos.local_id = locais.id 
-        JOIN usuarios ON eventos.usuario_id = usuarios.id
-        ORDER BY data_evento ASC, hora_inicio ASC";
+        JOIN usuarios ON eventos.usuario_id = usuarios.id ";
+
+// 3. Adicionar condições (WHERE) dinamicamente
+$condicoes = []; // Array para guardar as frases do WHERE
+
+if (isset($_GET['busca']) && !empty($_GET['busca'])) {
+    $busca = $_GET['busca'];
+    // LIKE permite buscar partes do texto (%texto%)
+    $condicoes[] = "eventos.titulo LIKE '%$busca%'"; 
+}
+
+if (isset($_GET['data']) && !empty($_GET['data'])) {
+    $filtro_data = $_GET['data'];
+    $condicoes[] = "eventos.data_evento = '$filtro_data'";
+}
+
+if (isset($_GET['local']) && !empty($_GET['local'])) {
+    $filtro_local = $_GET['local'];
+    $condicoes[] = "eventos.local_id = '$filtro_local'";
+}
+
+// Se tiver alguma condição, adicionamos ao SQL
+if (count($condicoes) > 0) {
+    // Junta todas as condições com " AND "
+    $sql .= " WHERE " . implode(" AND ", $condicoes);
+}
+
+// Ordenação
+$sql .= " ORDER BY data_evento ASC, hora_inicio ASC";
 
 $resultado = mysqli_query($conexao, $sql);
+
+// Buscar locais para o dropdown de filtro
+$res_locais = mysqli_query($conexao, "SELECT * FROM locais ORDER BY nome ASC");
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <title>Agenda de Eventos</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
     <h1>Agenda de Eventos</h1>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <a href="eventos_adicionar.php" class="btn-menu">+ Novo Evento</a>
+            <a href="area_restrita.php" class="btn-menu">Voltar</a>
+        </div>
+    </div>
+    
+    <br>
 
-    <a href="eventos_adicionar.php">+ Novo Agendamento</a>
-    <a href="area_restrita.php"> | Voltar ao Início</a>
-    <br><br>
+    <form method="GET" style="max-width: 100%; background-color: #1f2b4a; padding: 20px; display: flex; gap: 15px; align-items: flex-end;">
+        
+        <div style="flex: 1;">
+            <label>Buscar por Nome:</label>
+            <input type="text" name="busca" value="<?php echo $busca; ?>" placeholder="Ex: Culto...">
+        </div>
+
+        <div>
+            <label>Data:</label>
+            <input type="date" name="data" value="<?php echo $filtro_data; ?>">
+        </div>
+
+        <div>
+            <label>Local:</label>
+            <select name="local">
+                <option value="">Todos os Locais</option>
+                <?php
+                    while ($l = mysqli_fetch_assoc($res_locais)) {
+                        $sel = ($l['id'] == $filtro_local) ? 'selected' : '';
+                        echo "<option value='" . $l['id'] . "' $sel>" . $l['nome'] . "</option>";
+                    }
+                ?>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-menu" style="margin: 0; padding: 12px 20px;">Filtrar</button>
+        
+        <?php if(!empty($busca) || !empty($filtro_data) || !empty($filtro_local)): ?>
+            <a href="eventos_listar.php" style="margin-left: 10px; color: #e94560;">Limpar</a>
+        <?php endif; ?>
+    </form>
+
+    <br>
 
     <table border="1">
         <thead>
@@ -50,10 +121,7 @@ $resultado = mysqli_query($conexao, $sql);
             <?php
             if (mysqli_num_rows($resultado) > 0) {
                 while ($evento = mysqli_fetch_assoc($resultado)) {
-                    // Formatar a data para o padrão brasileiro (Dia/Mês/Ano)
                     $data_formatada = date('d/m/Y', strtotime($evento['data_evento']));
-
-                    // Formatar a hora (apenas Hora:Minuto)
                     $hora_inicio = date('H:i', strtotime($evento['hora_inicio']));
                     $hora_fim = date('H:i', strtotime($evento['hora_termino']));
 
@@ -61,8 +129,8 @@ $resultado = mysqli_query($conexao, $sql);
                     echo "<td>" . $data_formatada . "</td>";
                     echo "<td>" . $hora_inicio . " às " . $hora_fim . "</td>";
                     echo "<td>" . $evento['titulo'] . "</td>";
-                    echo "<td>" . $evento['nome_local'] . "</td>"; // Nome vindo do JOIN
-                    echo "<td>" . $evento['nome_responsavel'] . "</td>"; // Nome vindo do JOIN
+                    echo "<td>" . $evento['nome_local'] . "</td>";
+                    echo "<td>" . $evento['nome_responsavel'] . "</td>";
                     echo "<td>
                             <a href='eventos_editar.php?id=" . $evento['id'] . "'>Editar</a> | 
                             <a href='eventos_excluir.php?id=" . $evento['id'] . "' onclick='return confirm(\"Tem certeza?\")'>Excluir</a>
@@ -70,11 +138,10 @@ $resultado = mysqli_query($conexao, $sql);
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='6'>Nenhum evento agendado.</td></tr>";
+                echo "<tr><td colspan='6' style='text-align:center; padding: 20px;'>Nenhum evento encontrado com esses filtros.</td></tr>";
             }
             ?>
         </tbody>
     </table>
 </body>
-
 </html>
