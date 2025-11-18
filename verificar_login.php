@@ -34,6 +34,8 @@ if (mysqli_num_rows($resultado) == 1) {
         // Criamos a sessão (Aula 9, slide 28)
         $_SESSION['usuario_logado'] = $usuario_bd['usuario'];
         $_SESSION['nivel_acesso'] = $usuario_bd['nivel_acesso'];
+        // NOVO: SALVAMOS O ID DO USUÁRIO NA SESSÃO
+        $_SESSION['id_usuario'] = $usuario_bd['id'];
 
         // Redirecionamos para a área restrita
         header('Location: area_restrita.php');
