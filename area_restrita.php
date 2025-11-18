@@ -38,7 +38,7 @@ if (isset($_SESSION['usuario_logado']) && !empty($_SESSION['usuario_logado'])) {
 
         <a href="locais_listar.php" class="btn-menu">Gerenciar Locais</a>
         <a href="eventos_listar.php" class="btn-menu">Gerenciar Eventos</a>
-        <a href="calendario.php" class="btn-menu">📅 Visualizar Calendário</a>
+           <a href="calendario.php" class="btn-menu">📅 Calendário</a>
         <br><br>
         <a href="logout.php">Sair</a>
     </div>
