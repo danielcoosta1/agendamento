@@ -69,4 +69,5 @@ Um sistema web completo para gerenciamento de reservas de espaços e agendamento
 * `style.css`: Estilização global.
 
 ---
-Desenvolvido por **Daniel Costa** como projeto final da disciplina de Programação Web.
+
+Projeto final da disciplina de Programação Web.
