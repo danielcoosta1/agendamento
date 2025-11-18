@@ -7,8 +7,7 @@ Um sistema web completo para gerenciamento de reservas de espaços e agendamento
 ![MySQL](https://img.shields.io/badge/Database-MySQL-orange)
 
 ## 📸 Demonstração
-
-> **[INSIRA AQUI SEUS PRINTS/GIFS DEPOIS]**
+![preview](https://github.com/user-attachments/assets/42d9433e-05b5-4373-b71a-80c93617363f)
 
 ## 🚀 Funcionalidades
 
@@ -71,3 +70,4 @@ Um sistema web completo para gerenciamento de reservas de espaços e agendamento
 ---
 
 Projeto final da disciplina de Programação Web.
+
