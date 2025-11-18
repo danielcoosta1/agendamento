@@ -63,7 +63,7 @@ $resultado = mysqli_query($conexao, $sql);
                     echo "<td>" . $evento['nome_local'] . "</td>"; // Nome vindo do JOIN
                     echo "<td>" . $evento['nome_responsavel'] . "</td>"; // Nome vindo do JOIN
                     echo "<td>
-                            <a href='#'>Editar</a> | 
+                            <a href='eventos_editar.php?id=" . $evento['id'] . "'>Editar</a> | 
                             <a href='eventos_excluir.php?id=" . $evento['id'] . "' onclick='return confirm(\"Tem certeza?\")'>Excluir</a>
                           </td>";
                     echo "</tr>";
