@@ -36,9 +36,13 @@ if (isset($_SESSION['usuario_logado']) && !empty($_SESSION['usuario_logado'])) {
         <p>Painel de Controle</p>
         <br>
 
-        <a href="locais_listar.php" class="btn-menu">Gerenciar Locais</a>
+        <?php if ($_SESSION['nivel_acesso'] === 'admin'): ?>
+            <a href="locais_listar.php" class="btn-menu" style="background-color: #e94560;">Gerenciar Locais (Admin)</a>
+        <?php endif; ?>
+
+
         <a href="eventos_listar.php" class="btn-menu">Gerenciar Eventos</a>
-           <a href="calendario.php" class="btn-menu">📅 Calendário</a>
+        <a href="calendario.php" class="btn-menu">📅 Calendário</a>
         <br><br>
         <a href="logout.php">Sair</a>
     </div>
