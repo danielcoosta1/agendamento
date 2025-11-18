@@ -22,6 +22,15 @@
             <input type="password" id="senha" name="senha" required>
         </div>
         <br>
+        <?php
+        if (isset($_GET['erro'])) {
+            if ($_GET['erro'] == 'senha') {
+                echo "<p style='color: red;'>Senha incorreta. Tente novamente.</p>";
+            } elseif ($_GET['erro'] == 'usuario') {
+                echo "<p style='color: red;'>Usuário não encontrado. Tente novamente.</p>";
+            }
+        }
+        ?>
         <input type="submit" value="Entrar">
 
         <br>

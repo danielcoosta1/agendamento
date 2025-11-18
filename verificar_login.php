@@ -28,35 +28,30 @@ if (mysqli_num_rows($resultado) == 1) {
     // 7. VERIFICAR A SENHA (Conceito do PDF do Projeto)
     // Usamos password_verify() para comparar a senha digitada
     // com o HASH que está salvo no banco de dados.
-    
+
     if (password_verify($senha_digitada, $usuario_bd['senha'])) {
         // 8. SENHA CORRETA!
         // Criamos a sessão (Aula 9, slide 28)
         $_SESSION['usuario_logado'] = $usuario_bd['usuario'];
-        $_SESSION['id_usuario'] = $usuario_bd['id'];
         $_SESSION['nivel_acesso'] = $usuario_bd['nivel_acesso'];
 
         // Redirecionamos para a área restrita
         header('Location: area_restrita.php');
         exit;
-
     } else {
         // Senha incorreta
-        echo "Senha incorreta.";
-        // (Aqui poderíamos redirecionar de volta com uma msg de erro)
-        // header('Location: login.php?erro=senha');
-        // exit;
-    }
 
+        // (Aqui redirecionaríamos)
+        header('Location: login.php?erro=senha');
+        exit;
+    }
 } else {
+
+
     // Usuário não encontrado
-    echo "Usuário não encontrado.";
-    // (Aqui também redirecionaríamos)
-    // header('Location: login.php?erro=usuario');
-    // exit;
+    header('Location: login.php?erro=usuario');
+    exit;
 }
 
 // 9. FECHAR A CONEXÃO (Aula 10, slide 33)
 mysqli_close($conexao);
-
-?>
